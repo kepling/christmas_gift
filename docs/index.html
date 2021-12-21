@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>文档标题</title>
+</head>
+ 
+<body>
+ 
+	<p>Hello </p>
+	<!-- <img src="content/xi.jpg" alt="XIXIXI"><br> -->
+	<video autoplay muted loop id="myVideo">
+	<source src="content/out~1.mp4" type="video/mp4">
+	</video><br>
+	<button onclick='music();'>Play</button>
+	
+
+	<script type = "text/javascript">
+		function getRandomInt(max) {
+			return Math.floor(Math.random() * max);
+		}
+		function sayHi(){
+			alert("Hi"+getRandomInt(3));
+		}
+		
+		//global variable
+		audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+		
+		sayHi();
+		function music(){
+		setTimeout(
+			function(){
+			beep()
+			}, 0
+		);
+		setTimeout(
+			function(){
+			beep()
+			}, 200
+		);		
+		setTimeout(
+			function(){
+			beep()
+			}, 400
+		);		
+		setTimeout(
+			function(){
+			beep()
+			}, 600
+		);			
+		
+		
+		
+		}
+		
+		
+		
+		
+		function beep(frequency = 1000,type = 'square',vol = 0.05, duration = 100){
+			var oscillator = audioCtx.createOscillator();
+			var gainNode = audioCtx.createGain();
+			oscillator.connect(gainNode);
+			gainNode.connect(audioCtx.destination);
+
+			gainNode.gain.value = vol;
+			oscillator.frequency.value = frequency; //hz
+			
+			<!-- case 0: type = 'sine'; break; -->
+			<!-- case 1: type = 'square'; break; -->
+			<!-- case 2: type = 'sawtooth'; break; -->
+			<!-- case 3: type = 'triangle'; break; -->
+
+			oscillator.type = 'square';
+
+			oscillator.start();
+
+			setTimeout(
+				function(){
+				  oscillator.stop();
+				},
+				duration //ms
+			);
+		};	
+
+
+
+	</script>
+
+ 
+ 
+ 
+ 
+</body>
+ 
+</html>
+
+
+
